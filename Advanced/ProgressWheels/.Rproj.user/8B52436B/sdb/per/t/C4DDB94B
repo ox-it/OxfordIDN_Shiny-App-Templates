@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "library(shiny)\nlibrary(htmltools)\n\nshinyUI(fluidPage(\n  tags$head(\n    tags$link(rel = \"stylesheet\", type = \"text/css\", href = \"progress-style.css\")\n  ),\n  sidebarLayout(sidebarPanel(actionButton(\n    'goTable', 'Go table'\n  )),\n  mainPanel(tableOutput(\"table\")))\n))",
+    "created" : 1464707441292.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "5830650",
+    "id" : "C4DDB94B",
+    "lastKnownWriteTime" : 1465918808,
+    "last_content_update" : 1465918808549,
+    "path" : "~/Github/Live-Data_Scripts-and-Templates/Shiny-Templates/Progress-Wheel-Shiny/ui.R",
+    "project_path" : "ui.R",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

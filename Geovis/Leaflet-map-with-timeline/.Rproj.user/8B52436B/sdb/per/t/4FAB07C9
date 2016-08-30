@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "```{r, echo=F, eval=T}\nexample_data_frame <-\n  data.frame(\n    \"Send Location\" = c(\"50.97178\\n 13.960129\"),\n    \"Send City\" = c(\"DEU, Mockethal\"),\n    \"Receive Location\" = c(\"50.97178\\n 13.960129\"),\n    \"Receive City\" = c(\"DEU, Mockethal\"),\n    \"Date\" = c(\"1800-01-01\"),\n    \"Category\" = c(\"A\")\n  )\n```\n\n<p>foobar</p>\n\n```{r, echo=F, eval=T}\ndatatable(example_data_frame,options = list(dom = 't', autowidth = \"50%\",rownames = FALSE), rownames = FALSE)\n```",
+    "created" : 1465488356087.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3518701173",
+    "id" : "4FAB07C9",
+    "lastKnownWriteTime" : 1465488525,
+    "last_content_update" : 1465488525335,
+    "path" : "~/Github/Live-Data_Scripts-and-Templates/Shiny-Templates/Self-Contained-Apps/Leaflet-map-with-timeline/App_Description.Rmd",
+    "project_path" : "App_Description.Rmd",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

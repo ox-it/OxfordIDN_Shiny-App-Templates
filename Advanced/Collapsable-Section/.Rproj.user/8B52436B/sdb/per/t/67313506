@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(shiny)\nlibrary(visNetwork)\nlibrary(shinyBS)\n\nshinyUI(fluidPage(\n  wellPanel(\"This is an app with a collapsible section that contains a colour legend\"),\n  uiOutput(\"some_svg\"),\n  bsCollapse(id = \"collapseExample\", open = NULL,\n             bsCollapsePanel(\"Click to show/hide legend\", uiOutput(\"colour_legend_ui\"), style = \"default\")),\n  sidebarLayout(\n    sidebarPanel(\n      selectInput(\n        \"shape\",\n        label = \"shape (do change)\",\n        choices = c(\"circle\", \"square\")\n      ),\n      selectInput(\n        \"focus\",\n        label = \"foucs on node (do change)\",\n        choices = 1:8\n      )\n    ),\n    mainPanel(visNetworkOutput(\"the_network\"))\n  ),\n  conditionalPanel(\n    \"typeof input.current_node_id !== 'undefined'\",\n    verbatimTextOutput(\"selected_node\")\n    \n  )\n))",
+    "created" : 1468445533069.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4284394722",
+    "id" : "67313506",
+    "lastKnownWriteTime" : 1468595726,
+    "last_content_update" : 1468595726658,
+    "path" : "~/Github/Live-Data_Scripts-and-Templates/Collapsable-Section/ui.R",
+    "project_path" : "ui.R",
+    "properties" : {
+        "tempName" : "Untitled2"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

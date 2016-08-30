@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(shiny)\n\n## from http://stackoverflow.com/a/35175847/1659890\n\nui <- shinyUI(bootstrapPage(\n  wellPanel(\"Title of App\"),\n  absolutePanel(\n    id = \"controls\",\n    class = \"panel panel-default\",\n    fixed = FALSE,\n    # draggable = TRUE,\n    top = 60,\n    left = \"auto\",\n    right = \"auto\",\n    bottom = \"auto\",\n    width = 330,\n    height = \"auto\",\n    HTML(\n      '<button data-toggle=\"collapse\" data-target=\"#demo\">Collapsible</button>'\n    ),\n    tags$div(\n      id = 'demo',\n      class = \"collapse\",\n      checkboxInput('input_draw_point', 'Draw point', FALSE),\n      verbatimTextOutput('summary')\n    )\n  ),\n  sidebarLayout(sidebarPanel(\n    selectInput(\n      \"select_input\",\n      label = \"Shape\",\n      choices = c(\"circle\", \"square\")\n    )\n    \n  ),\n  mainPanel(\"foobar\"))\n))\n\nserver <- shinyServer(function(input, output, session) {\n  output$summary <- renderPrint(print(cars))\n  \n})\n\nshinyApp(ui = ui, server = server)",
+    "created" : 1468445059296.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "524914601",
+    "id" : "22BDD76",
+    "lastKnownWriteTime" : 1468445420,
+    "last_content_update" : 1468445420441,
+    "path" : "~/Github/Live-Data_Scripts-and-Templates/Collapsable-Section/collapsable-section.R",
+    "project_path" : "collapsable-section.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

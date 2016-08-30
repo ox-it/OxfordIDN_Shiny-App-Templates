@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(highcharter)\nstacked_bar_chart <- function(data = NA,\n                              categories_column = NA,\n                              measure_columns = NA,\n                              stacking_type = NA,\n                              ordering_function = c) {\n  \n  ordered_measure <-\n    order(unlist(lapply(measure_columns, function(x) {\n      ordering_function(data[, x])\n    })),\n    decreasing = TRUE) - 1\n  \n  chart <- highchart() %>%\n    hc_xAxis(categories = data[, categories_column],\n             title = categories_column)\n  \n  invisible(lapply(1:length(measure_columns), function(colNumber) {\n    chart <<-\n      hc_add_series(\n        hc = chart,\n        name = measure_columns[colNumber],\n        data = data[, measure_columns[colNumber]],\n        index = ordered_measure[colNumber]\n      )\n  }))\n  \n  chart %>%\n    hc_chart(type = \"bar\") %>%\n    hc_plotOptions(series = list(stacking = as.character(stacking_type))) %>%\n    hc_legend(reversed = TRUE)\n}\n\nethopia_schooling_youngOld <- read.csv(file = \"data/ethopia_education_schooling.csv\", stringsAsFactors = F)\nethopia_schooling_region <- ethopia_schooling_youngOld[ethopia_schooling_youngOld$Property.Type == \"schooling region\",]\n\nmeasure_list <- c(\"percentage.in.school\", \n                  \"highest.grade.completed.2006\", \"Percentage.children.over.age.for.grade\", \n                  \"percentage.attending.private.schools..\", \"Sample.Size\")\n\nmeasure_list <- setNames(measure_list, trimws(gsub(\"\\\\.\", \" \", measure_list)))\n\n\nlibrary(dplyr)\nlibrary(tidyr)\n\ndata_to_viz <- filter(ethopia_schooling_youngOld, Property.Type == \"caregiver education\") %>%\n  select_(\"Property\", \"Cohort\", \"percentage.in.school\") %>%\n  spread_(\"Cohort\", \"percentage.in.school\")\n\nstacked_bar_chart(\n  data = data_to_viz,\n  categories_column = \"Property\",\n  measure_columns = c(\"Older Round 2\", \"Young Round 4\")\n)\n\n\n",
+    "created" : 1471515397229.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2713420103",
+    "id" : "96FC5B67",
+    "lastKnownWriteTime" : 1471517558,
+    "last_content_update" : 1471517558060,
+    "path" : "~/Github/Live-Data_Case-Studies/2016/YoungLives/Ethiopia/YoungLives_Ethiopia_Education/stackedbarchart_test.R",
+    "project_path" : "stackedbarchart_test.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

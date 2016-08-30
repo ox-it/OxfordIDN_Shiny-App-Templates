@@ -1,0 +1,31 @@
+Property,Property Type,Cohort,percentage in school,highest grade completed 2006,Percentage children over age for grade,"percentage attending private schools ",Sample Size
+No education,caregiver education,Young Round 4,91.8,3.2,59.1,0.9,968
+No education,caregiver education,Older Round 2,94.1,2.9,63.4,0.7,474
+Lower primary,caregiver education,Young Round 4,96.1,3.4,55,3.4,433
+Lower primary,caregiver education,Older Round 2,94.4,3.2,63,3.5,303
+Upper primary,caregiver education,Young Round 4,97.9,3.9,40.5,12,289
+Upper primary,caregiver education,Older Round 2,96.1,3.7,44.9,7.3,128
+More than 8 grade,caregiver education,Young Round 4,100,4.5,28.4,29.5,183
+More than 8 grade,caregiver education,Older Round 2,98.7,4.2,33.3,21.6,75
+Female,sex,Young Round 4,96.3,3.5,50.3,5.8,884
+Female,sex,Older Round 2,96.3,3.5,50.3,5.8,884
+Male,sex,Young Round 4,93,3.4,54.1,6.6,989
+Male,sex,Older Round 2,93.6,3.1,,4.1,500
+Addis Ababa,schooling region,Young Round 4,100,4.9,20.2,20.6,272
+Addis Ababa,schooling region,Older Round 2,100,4.4,31.3,13.9,144
+Amhara,schooling region,Young Round 4,90,3.4,54.2,0.9,372
+Amhara,schooling region,Older Round 2,92.8,3.4,52.3,0,195
+Oromia,schooling region,Young Round 4,97.1,2.9,70.1,0.5,378
+Oromia,schooling region,Older Round 2,93.8,2.8,67.5,1.1,195
+SNNP,schooling region,Young Round 4,95.5,2.3,80.4,10,472
+SNNP,schooling region,Older Round 2,93.1,2.5,75.2,6.6,246
+Tigray,schooling region,Young Round 4,91.3,4.5,20.6,1.2,379
+Tigray,schooling region,Older Round 2,96,3.2,55.3,0.5,200
+Bottom Tercile,terciles wealth index,Young Round 4,92.1,2.5,78.9,0.4,620
+Bottom Tercile,terciles wealth index,Older Round 2,89.4,2.3,76.9,0,303
+Top Tercile,terciles wealth index,Young Round 4,99.2,4.5,27.6,17.1,614
+Top Tercile,terciles wealth index,Older Round 2,98.8,4.1,35.8,10.4,302
+Rural,urban or rural,Young Round 4,92.1,2.9,64.5,0.1,"1,108"
+Rural,urban or rural,Older Round 2,92.8,2.6,70.4,0.4,584
+Urban,urban or rural,Young Round 4,98.2,4.2,34.6,14.6,764
+Urban,urban or rural,Older Round 2,97.7,4,41.2,9.3,396

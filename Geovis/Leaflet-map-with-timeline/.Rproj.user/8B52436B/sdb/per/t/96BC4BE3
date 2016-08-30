@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "## =============================== License ========================================\n## ================================================================================\n## This work is distributed under the MIT license, included in the parent directory\n## Copyright Owner: University of Oxford\n## Date of Authorship: 2016\n## Author: Martin John Hadley (orcid.org/0000-0002-3039-6849)\n## Academic Contact: Felix Krawatzek\n## Data Source: local file\n## ================================================================================\n## Data obtained from https://www.census.gov/geo/maps-data/data/cbf/cbf_counties.html at the 1:500,000 scale\n\n\n## =========================== Generate Choropleth ==============================\n## ==============================================================================\n## Generate pretty breaks\n\npretty_bins <-\n  reactive({\n    pretty(shapefile_with_tallies()$Count.of.locations)\n  })\n## color.brewer palette\n\n\noutput$leaflet_choropleth <- renderLeaflet({\n  if (is.null(input$time_period_of_interest)) {\n    return()\n  }\n  \n  if (is.null(input$pretty_legend_scale)) {\n    return()\n  }\n  \n  shapefile_with_tallies <- shapefile_with_tallies()\n  pretty_bins <- pretty_bins()\n  \n  if (input$pretty_legend_scale) {\n    palette <- colorBin(\n      brewer.pal(length(pretty_bins) - 1, \"YlGnBu\"),\n      bins = pretty_bins,\n      pretty = FALSE,\n      # na.color = \"#cccccc\",\n      alpha = TRUE\n    )\n    \n    colors_vector <- brewer.pal(length(pretty_bins) - 1, \"YlGnBu\")\n    labels_vector <- {\n      labels_vector <- as.character()\n      for (i in 1:{\n        length(pretty_bins) - 1\n      }) {\n        labels_vector <-\n          append(labels_vector, paste0(pretty_bins[i], \" to \", pretty_bins[i + 1]))\n      }\n      labels_vector\n    }\n  } else {\n    palette <- colorBin(\n      c(\"#cccccc\", brewer.pal(5, \"YlGnBu\")),\n      bins = c(0, 1, 5, 10, 20, 50, 350),\n      pretty = FALSE,\n      # na.color = \"#cccccc\",\n      alpha = TRUE\n    )\n    colors_vector <- c(\"#cccccc\",brewer.pal(5, \"YlGnBu\"))\n    labels_vector <- c(\"0\",\"1-5\",\"5-10\",\"10-20\",\"20-50\",\"50-350\")\n  }\n  \n  \n  region_labeller <-\n    function(state_name = NA,\n             number_of_points = NA) {\n      paste0(\"<p>\", state_name, \"</p>\",\n             \"<p>\", number_of_points, \"</p>\")\n    }\n  \n  \n  map <- leaflet(data = shapefile_with_tallies) %>% addTiles()\n  map <- map %>% addPolygons(\n    stroke = TRUE,\n    color = \"#000000\",\n    smoothFactor = 0.2,\n    fillOpacity = 0.8,\n    fillColor = ~ palette(Count.of.locations),\n    weight = 1,\n    popup = ~ region_labeller(state_name = State_Name, number_of_points = Count.of.locations)\n  )\n    map %>% addPolygons(\n      data = us_states_shapefiles,\n      stroke = TRUE,\n      color = \"#000000\",\n      smoothFactor = 0.2,\n      weight = 1,\n      fill = FALSE\n    ) %>% addLegend(\n          position = 'topleft',\n          ## choose bottomleft, bottomright, topleft or topright\n          colors = colors_vector,\n          ## Generate labels from pretty_bins\n          labels = labels_vector,\n          ## legend labels (only min and max)\n          opacity = 0.6,\n          ##transparency again\n          title = \"relative<br>amount\"\n        )\n      \n      \n})",
+    "created" : 1465478724983.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "703729147",
+    "id" : "96BC4BE3",
+    "lastKnownWriteTime" : 1465487075,
+    "last_content_update" : 1465487075043,
+    "path" : "~/Github/Live-Data_Scripts-and-Templates/Shiny-Templates/Self-Contained-Apps/Leaflet-map-with-timeline/server/leaflet-choropleth.R",
+    "project_path" : "server/leaflet-choropleth.R",
+    "properties" : {
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

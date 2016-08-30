@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "## =============================== License ========================================\n## ================================================================================\n## This work is distributed under the MIT license, included in the parent directory\n## Copyright Owner: University of Oxford\n## Date of Authorship: 2016\n## Author: Martin John Hadley (orcid.org/0000-0002-3039-6849)\n## Academic Contact: Felix Krawatzek\n## Data Source: local file\n## ================================================================================\n\n## ==== Packages to load for server\n\nlibrary(shiny) # Some advanced functionality depends on the shiny package being loaded client-side, including plot.ly\nlibrary(leaflet)\nlibrary(DT)\n\n## ==== Global Variables (client-side)\n\nlibrary(shinythemes) # Template uses the cerulean theme as it is pretty\n\nshinyUI(fluidPage(\n  ## ==== Automatically include vertical scrollbar\n  ## ==== This prevents the app from reloading content when the window is resized which would otherwise result in the\n  ## ==== appearance of the scrollbar and the reloading of content. Note that \"click data\" may still be lost during\n  ## ==== resizing, as discussed here https://github.com/rstudio/shiny/issues/937\n  tags$style(type = \"text/css\", \"body { overflow-y: scroll; }\"),\n  \n  theme = shinytheme(\"cerulean\"),\n  \n  fluidPage(\n    HTML(\n      \"<h2>Leaflet Choropleth with Timeline Template</h2>\"\n    ),\n    wellPanel(fluidRow(\n      column(\n      HTML(\"Foobar\"),\n      \"fpp\",\n      {example_data_frame <-\n        data.frame(\n          \"Date\" = c(\"\\n 13.960129\"),\n          \"Send City\" = c(\"DEU, Mockethal\"),\n          \"Receive Location\" = c(\"50.97178\\n 13.960129\"),\n          \"Receive City\" = c(\"DEU, Mockethal\"),\n          \"Date\" = c(\"1800-01-01\"),\n          \"Category\" = c(\"A\")\n        )\n      datatable(example_data_frame,options = list(dom = 't', autowidth = \"50%\",rownames = FALSE), rownames = FALSE)}\n      ,width = 12))),\n    \n    \n    sidebarLayout(\n      sidebarPanel(\n        checkboxInput(\"show_timeslider\", label = \"Filter letters by date sent?\", value = TRUE),\n        checkboxInput(\"pretty_legend_scale\", label = \"Recalculate legend scale as data filtered?\", value = FALSE),\n        # uiOutput(\"legend_type_UI\"),\n        uiOutput(\"time_period_of_interest_UI\")\n      ),\n      mainPanel(leafletOutput(\"leaflet_choropleth\"))\n    )\n  )\n))",
+    "created" : 1465486486002.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1770303603",
+    "id" : "20CF29E3",
+    "lastKnownWriteTime" : 1465547146,
+    "last_content_update" : 1465547146676,
+    "path" : "~/Github/Live-Data_Scripts-and-Templates/Shiny-Templates/Self-Contained-Apps/Leaflet-map-with-timeline/ui.R",
+    "project_path" : "ui.R",
+    "properties" : {
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

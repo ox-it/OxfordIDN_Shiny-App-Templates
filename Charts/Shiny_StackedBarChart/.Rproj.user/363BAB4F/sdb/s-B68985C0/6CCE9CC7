@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(shiny)\nlibrary(highcharter)\nlibrary(htmltools)\nlibrary(dplyr)\nlibrary(tidyr)\n\ncountry_schooling <- read.csv(file = \"data/ethopia_education_schooling.csv\", stringsAsFactors = F)\ncountry_schooling$Sample.Size <- as.numeric(gsub(\",\",\"\",country_schooling$Sample.Size))\n\n\nmeasure_list <- c(\"percentage.in.school\", \n                  \"highest.grade.completed.2006\", \"Percentage.children.over.age.for.grade\", \n                  \"percentage.attending.private.schools..\", \"Sample.Size\")\n\nmeasure_list <- setNames(measure_list, trimws(gsub(\"\\\\.\", \" \", measure_list)))\n\nproperty_measure_groups <- c(\"Older Round 2\", \"Young Round 4\")\n\n## ============================ Stacked bar chart function ==============================\n## ======================================================================================\n\nstacked_bar_chart <- function(data = NA,\n                              categories_column = NA,\n                              measure_columns = NA,\n                              stacking_type = NA,\n                              ordering_function = c) {\n  \n  ordered_measure <-\n    order(unlist(lapply(measure_columns, function(x) {\n      ordering_function(data[, x])\n    })),\n    decreasing = TRUE) - 1\n  \n  chart <- highchart() %>%\n    hc_xAxis(categories = data[, categories_column],\n             title = categories_column)\n  \n  invisible(lapply(1:length(measure_columns), function(colNumber) {\n    chart <<-\n      hc_add_series(\n        hc = chart,\n        name = measure_columns[colNumber],\n        data = data[, measure_columns[colNumber]],\n        index = ordered_measure[colNumber]\n      )\n  }))\n  \n  chart %>%\n    hc_chart(type = \"bar\") %>%\n    hc_plotOptions(series = list(stacking = as.character(stacking_type))) %>%\n    hc_legend(reversed = TRUE)\n}\n\n## ============================ shinyServer ==============================\n## ======================================================================================\n\nshinyServer(function(input, output){\n  \n  output$selected_category_UI <- renderUI({\n    \n    selectInput(\"selected_category\", label = \"Selected measure\",\n                choices = unique(country_schooling$Property.Type))\n    \n  })\n  \n  output$selected_measure_UI <- renderUI({\n    \n    selectInput(\"selected_measure\", label = \"Selected measure\",\n                choices = measure_list)\n    \n  })\n  \n  output$selected_stacking_UI <- renderUI({\n    \n    selectInput(\"selected_stacking\", label = \"Selected stacking\",\n                choices = list(\"No stacking\" = NA, \"Total Observations\" = \"normal\", \"Percentage\" = \"percent\"))\n    \n  })\n  \n  output$comparison_chart <- renderHighchart({\n    \n    if(is.null(input$selected_measure)){\n      return()\n    }\n    \n    print(filter(country_schooling, Property.Type == input$selected_category) %>%\n            select_(\"Property\", \"Cohort\", input$selected_measure))\n    \n    data_to_viz <- filter(country_schooling, Property.Type == input$selected_category) %>%\n      select_(\"Property\", \"Cohort\", input$selected_measure) %>%\n      spread_(\"Cohort\", input$selected_measure)\n    \n    \n    \n    stacked_bar_chart(\n      data = data_to_viz,\n      categories_column = \"Property\",\n      measure_columns = property_measure_groups,\n      ## selectInput always returns a character, to negate stacking need to give NA to argument\n      stacking_type = if(input$selected_stacking != \"NA\"){input$selected_stacking} else NA\n    )\n    \n    \n    \n  })\n  \n})",
+    "created" : 1471516553350.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "619620955",
+    "id" : "6CCE9CC7",
+    "lastKnownWriteTime" : 1471528505,
+    "last_content_update" : 1471528505090,
+    "path" : "~/Github/Live-Data_Case-Studies/2016/YoungLives/Ethiopia/YoungLives_Ethiopia_Education/server.R",
+    "project_path" : "server.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
