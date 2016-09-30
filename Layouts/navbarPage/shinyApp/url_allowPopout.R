@@ -22,7 +22,7 @@ url_allowPopout_check <-
                       FALSE
                   } else
                     FALSE
-                }, ignoreNULL = FALSE)
+                })
 
 ## Generate popout icon, default gyphicon dependent on bootstrap
 url_allowPopout_icon <-
