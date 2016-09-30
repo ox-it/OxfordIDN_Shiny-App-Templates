@@ -21,15 +21,12 @@ shinyUI(
     tabPanel("Visualisation",
              wellPanel(uiOutput("short_viz_description_UI")),
              fluidPage(
-               ## url_allow_popout_UI must occur in first tabPanel
+               ## url_allow_popout_UI MUST occur in first tabPanel
                uiOutput("url_allow_popout_UI"),
                uiOutput("selected_categories_UI"),
                leafletOutput("leaflet_map")
              )),
     tabPanel("About",
-             # includeHTML(knitr::knit(
-             #   "App_Description.Rmd"
-             # ))),
              uiOutput("about_page_UI")),
     collapsible = T
   ))

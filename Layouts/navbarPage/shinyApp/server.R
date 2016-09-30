@@ -18,6 +18,9 @@ source("data-processing.R", local = TRUE)
 source("beautification.R", local = TRUE)
 
 shinyServer(function(input, output, session) {
+  ## ==== Check URL for allowPopout
+  source("url_allowPopout.R", local = TRUE)$value
+  
   ## ==== About Page
   output$about_page_UI <- renderUI({
     includeHTML(knitr::knit("About_Page.Rmd"))
@@ -52,8 +55,5 @@ shinyServer(function(input, output, session) {
       addTiles() %>%
       addCircleMarkers(color = ~ palette(type))
   })
-  
-  ## ==== Check URL for allowPopout
-  source("url_allowPopout.R", local = TRUE)$value
   
 })
