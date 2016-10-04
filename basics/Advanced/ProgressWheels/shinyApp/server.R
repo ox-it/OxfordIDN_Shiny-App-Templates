@@ -6,6 +6,22 @@
 ## Author: Martin John Hadley (orcid.org/0000-0002-3039-6849)
 ## ================================================================================
 
+## ==== CSS
+
+appCSS <- "
+#loading-content {
+position: absolute;
+background: #000000;
+opacity: 0.9;
+z-index: 100;
+left: 0;
+right: 0;
+height: 100%;
+text-align: center;
+color: #FFFFFF;
+}
+"
+
 ## ==== Packages to load for server
 ## ==== Note some packages may be loaded within data-processing, i.e. tidyverse
 library(shiny) # Some advanced functionality depends on the shiny package being loaded server-side
