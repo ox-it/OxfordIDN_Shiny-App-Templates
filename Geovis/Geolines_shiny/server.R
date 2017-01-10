@@ -10,7 +10,7 @@
 ## ==== Note some packages may be loaded within data-processing, i.e. tidyverse
 library(shiny) # Some advanced functionality depends on the shiny package being loaded server-side
 library(leaflet)
-library(oidnChaRts) # devtools::install_github("ox-it/oidnChaRts")
+library(oidnChaRts) # devtools::install_github("martinjhnhadley/oidnChaRts")
 library(geosphere) # required for geo_lines_map
 library(dplyr)
 

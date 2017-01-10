@@ -11,7 +11,7 @@
 library(shiny) # Some advanced functionality depends on the shiny package being loaded server-side
 library(highcharter)
 library(plotly)
-library(oidnChaRts) # devtools::install_github("ox-it/oidnChaRts")
+library(oidnChaRts) # devtools::install_github("martinjhnhadley/oidnChaRts")
 library(dplyr)
 
 ## ==== Load data/functions globally
