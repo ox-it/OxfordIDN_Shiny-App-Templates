@@ -6,7 +6,7 @@
 
 <p>Because the code above is dependent on objects defined in the server, this .Rmd file is rendered server side using `includeHTML` and then displayed in the ui.R file via `uiOutput`.</p>
 
-It is good practice to link to both the data underlying a visualisation (this <a href="https://dx.doi.org/10.6084/m9.figshare.3425729">Figshare deposit</a>) and the <a href=https://github.com/ox-it/OxfordIDN_Shiny-App-Templates/Layouts/navbarMenu">Github Repository</a>
+It is good practice to link to both the data underlying a visualisation (this <a href="https://dx.doi.org/10.6084/m9.figshare.3425729">Figshare deposit</a>) and the <a href=https://github.com/martinjhnhadley/OxfordIDN_Shiny-App-Templates/Layouts/navbarMenu">Github Repository</a>
 
 Images are also easy to include, the Oxford IT Services logo has been shown below. It is contained within the following directory; www/images. Shiny sets the /www folder as the base directory for relative links.
 
