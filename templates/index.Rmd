@@ -1,0 +1,34 @@
+---
+title: "Shiny App Templates"
+author: "`r library(htmltools)
+HTML('<a href=http://idn.it.ox.ac.uk>Oxford University Interactive Data Network</a>')`"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    number_sections: false
+    css: gh-pages_global/gh-pages_navbar.css
+    includes:
+      in_header: gh-pages_global/_navbar.html
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = TRUE,
+	message = FALSE,
+	warning = FALSE
+)
+library(htmltools)
+```
+
+<a href="https://github.com/martinjhnhadley/OxfordIDN_Shiny-App-Templates" target="blank">  
+<img style="position: absolute; top: 0; right: 0; border: 0;",
+             src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png",
+             alt="Fork me on GitHub"/>
+</a>
+
+Most Shiny templates in this site utilise htmlwidgets to provide rich, interactive visualisations. htmlwidgets is a framework that makes it possible to use JavaScript libraries directly from within R without knowing anything about JavaScript.
+
+To learn more about htmlwidgets and what libraries are available, see [martinjhnhadley.github.io/OxfordIDN_htmlwidgets/](http://martinjhnhadley.github.io/OxfordIDN_htmlwidgets/).
+
+TODO: MAKE NICE IMAGE OF MULTIPLE CHARTS HERE, AND LINK THEM TO THE TEMPLATES.
+

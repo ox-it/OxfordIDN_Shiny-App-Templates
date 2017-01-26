@@ -26,20 +26,28 @@ library(htmltools)
              alt="Fork me on GitHub"/>
 </a>
 
-This is a collection of Shiny app templates and tutorials compiled as part of the Live Data project at Oxford University, can be re-used freely and without limitation - it is shared with the Creative Commons Zero (CC0 1.0 Universal (CC0 1.0) license license).
+Shiny allows highly interactive visualisations and web applications to be designed and created using the R language - meaning analysis/processing code can be re-used easily for communication and outreach.
 
-# What is a Shiny App
+This website is maintained by the University of Oxford's <a href="http://idn.web.ox.ac.uk">Interactive Data Network</a> and provides a number of templates for creating a variety of standardised visualisations. All templates have the following features:
 
-Shiny allows highly interactive applications/charts to be designed and created using the R language - meaning analysis/processing code can be re-used easily for communication and outreach.
+- Designed to work with mobile (responsively designed)
 
-A more sophisticates description of where Shiny is useful is forthcoming
+- Include space for descriptions of the application
 
-# Basic Shiny Tutorial
+- Provides a "popout button" that will open the visualisation in a separate window (useful when embedding via iframes into narrow pages)
 
-Available many places.
+- Designed for real datasets and real applications (show me a map of these historical sites between these dates, and filter by site type)
 
-# Shiny Templates
+Here's a sample map:
 
-There is a basic `navbarPage` template used in most tutorials in this colletion of shiny apps, it is thoroughly documented <a href="/OxfordIDN_Shiny-App-Templates/Layouts/navbarPage">here</a>.
+TODO: Insert map
 
+# Where can I learn Shiny?
 
+This site has tutorials on specific components of Shiny apps (including the advanced topic of reactive expressions) but does not give an introduction to the basics of Shiny. You might find the following resources useful:
+
+- Self-paced training from RStudio
+
+- [Self-paced training from the ITLC Catalog](https://github.com/martinjhnhadley/OxfordIDN_Training_Interactive-Viz-with-R)
+
+- [Lynda.com tutorial on Shiny and RMarkdown](https://www.lynda.com/RStudio-tutorials/Creating-Interactive-Presentations-Shiny-R/452087-2.html) (University of Oxford members are provided access to Lynda.com through [here](https://shib.lynda.com/Shibboleth.sso/InCommon?providerId=https://registry.shibboleth.ox.ac.uk/idp))
