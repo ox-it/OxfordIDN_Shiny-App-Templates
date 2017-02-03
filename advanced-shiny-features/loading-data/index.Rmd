@@ -1,5 +1,5 @@
 ---
-title: "Stacked BarChart Template"
+title: "Pulsating \"loading data\""
 author: "`r library(htmltools)
 HTML('<a href=http://idn.it.ox.ac.uk>Oxford University Interactive Data Network</a>')`"
 output: 
@@ -7,9 +7,9 @@ output:
     toc: true
     toc_float: true
     number_sections: false
-    css: [../../../gh-pages_global/gh-pages_navbar.css, ../../../gh-pages_global/custom-width.css]
+    css: [../../gh-pages_global/gh-pages_navbar.css, ../../gh-pages_global/custom-width.css]
     includes:
-      in_header: ../../../gh-pages_global/_navbar.html
+      in_header: [../../gh-pages_global/_navbar.html]
 ---
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(
@@ -20,7 +20,143 @@ knitr::opts_chunk$set(
 library(htmltools)
 ```
 
+<a href="https://github.com/martinjhnhadley/OxfordIDN_Shiny-App-Templates/tree/gh-pages/advanced-shiny-features/loading-data" target="blank">  
+<img style="position: absolute; top: 0; right: 0; border: 0;",
+             src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png",
+             alt="Fork me on GitHub"/>
+</a>
+
 Often a Shiny app will contain a visualisation or other element that takes a long time to load. It's useful to provide a visual aid to your users that content is being loaded (or something else is being done). This template provides a bare bones Shiny app with pulsating text that reads "loading data..." while a chart is being generated.
 
-This template was inspired by Dean Attali ([http://stackoverflow.com/a/35665217/1659890](http://stackoverflow.com/a/35665217/1659890)).
+This template was uses the `shinyjs` library and a [http://stackoverflow.com/a/35665217/1659890](Stack Overflow answer) both written by [deanattali.com](Dean Attali).
+
+<iframe src="https://trainingidn.shinyapps.io/shiny-template_loading-data/" width="100%" height="500px"></iframe>
+
+# shinyJS
+
+The magic behind this tutorial is provided by two simple functions from the `shinyjs` library:
+
+- `show("content")`
+- `hide("content")`
+
+The shinyjs library is thoroughly documented at [http://deanattali.com/shinyjs/](deanattali.com/shinyjs/), it provides many commonly used JavaScript operations directly from R that you can easily use in your Shiny applications. Many of these should be considered "advanced" for most Shiny users, as the main benefit of Shiny is the ability to make interactive content directly from R. However, it's useful to know you can do the following:
+
+- Run JavaScript on page load
+- Enable/disable content
+- Reset shiny controls (i.e. return to default values)
+- Modify CSS classes on a specific element
+
+# How this template works
+
+This template relies on three steps:
+
+- useShinyjs()
+- show/hide("loading-content")
+- animate.min.css and loading-content.css
+
+## useShinyjs()
+
+In order to use `shinyjs` you **must** include `useShinyjs()` within the your UI, it's recommended you include it near the top so you don't forget:
+
+```{r, eval=FALSE}
+## ui.R
+shinyUI(
+  fluidPage(
+    useShinyjs(),
+    ...
+)
+```
+
+There is slight finesse required if using `shinyjs` outside of what might be considered a "traditional" two-file Shiny app. Consult the documentaton [https://github.com/daattali/shinyjs/blob/master/vignettes/shinyjs-usage.Rmd](here) if necessary.
+
+## show/hide("loading-content")
+
+When the server function calls `renderPlot` to generate `output$chart` the `shinyjs` function `show` is called. This includes when the app is first loaded and when the `actionButton(inputID = "reload")` button is pressed, as it results in input$reload being updated and therefore `renderPlot` is reevaluated.
+
+```{r, eval = FALSE}
+## server.R
+output$chart <- renderPlot({
+      
+      input$reload # trigger a reload
+      
+      show("loading-content") # make the loading pane appear
+      
+      ...
+})
+```
+
+This triggers the `div` element in ui.R with the corresponding `id` to be displayed, which in this instance is h2 formatted text.
+
+```{r, eval = FALSE}
+fluidPage(...,
+          div(id = "loading-content",
+              class = "loading-content",
+              h2(class = "animated infinite pulse", "Loading data...")),
+          plotOutput("chart", height = "200px"),
+          ...)
+```
+
+The loading pane in this app is designed to then cover the entirety of the screen, see [the next section](#css) for details. Note that the empty space shown in the app is due to the `height` argument of `plotOutput`.
+
+When the assignment of `g` has finished, the `hide` function is triggered; this hides the `div` element with the corresponding `id`, making our loading pane invisible. After the loading pane has been hidden, it's necessary to call `g` so that the plot is returned by `output$chart`
+
+```{r, eval = FALSE}
+output$chart <- renderPlot({
+  ...
+  g <- ggplot(iris, aes(x = Sepal.Width, y = Sepal.Length)) + geom_point()
+  
+  hide("loading-content") # make the loading pane disappear
+  
+  g # display the output after hiding it
+  
+})
+```
+
+
+## animate.min.css and loading-content.css {#css}
+
+CSS should be considered the "design language" of the web - it's used for laying out content in grids, styling text, images and much more. It is not necessary to understand CSS to use this template, but if you're interested there's a great [https://www.codecademy.com/learn/web](Code Academy course on CSS).
+
+This template uses the excellent CSS library [https://daneden.github.io/animate.css/](animate.css) to provide a pulsating effect for the text in the loading pane. There are many choices about [https://shiny.rstudio.com/articles/css.html](how to include CSS in Shiny apps), one of the key decisions comes down to the following:
+
+- Should I use a remote CSS file, via a Content Delivery Network (CDN)?
+- Should I use a local copy of the CSS file?
+
+In these templates we almost always use a local copy, as sometimes the developers require Shiny apps to work without an internet connection. We're therefore able to include CSS very easily with `includeCSS`
+
+```{r, eval = FALSE}
+## ui.R
+shinyUI(
+  fluidPage(
+    useShinyjs(),
+    includeCSS("www/animate.min.css"),
+    ...
+)
+```
+
+The pulsating effect is added to the loading pane by setting the `class` of the text `"animated infinite pulse"`
+
+```{r, eval = FALSE}
+## ui.R
+h2(class = "animated infinite pulse", "Loading data..."))
+```
+
+Finally, the styling for the loading pane is provided by "loading-content.css" - any element with `class="loading-content"` has the following style applied:
+
+```{r, eval=FALSE}
+.loading-content {
+position: absolute;
+background: #FFFFFF;
+opacity: 0.9;
+z-index: 100;
+left: 0;
+right: 0;
+height: 100%;
+text-align: center;
+color: #000000;
+}
+```
+
+
+
 
