@@ -1,0 +1,26 @@
+---
+title: "Stacked BarChart Template"
+author: "`r library(htmltools)
+HTML('<a href=http://idn.it.ox.ac.uk>Oxford University Interactive Data Network</a>')`"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    number_sections: false
+    css: [../../../gh-pages_global/gh-pages_navbar.css, ../../../gh-pages_global/custom-width.css]
+    includes:
+      in_header: ../../../gh-pages_global/_navbar.html
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = TRUE,
+	message = FALSE,
+	warning = FALSE
+)
+library(htmltools)
+```
+
+Often a Shiny app will contain a visualisation or other element that takes a long time to load. It's useful to provide a visual aid to your users that content is being loaded (or something else is being done). This template provides a bare bones Shiny app with pulsating text that reads "loading data..." while a chart is being generated.
+
+This template was inspired by Dean Attali ([http://stackoverflow.com/a/35665217/1659890](http://stackoverflow.com/a/35665217/1659890)).
+
