@@ -15,14 +15,11 @@ library(leaflet)
 
 shinyUI(
   navbarPage(
-    ## ==== Include google analytics code
-      #  tags$head(includeScript("google-analytics.js")),
     "Name of App",
     tabPanel("Visualisation",
              wellPanel(uiOutput("short_viz_description_UI")),
              fluidPage(
-               ## url_allow_popout_UI MUST occur in first tabPanel
-               uiOutput("url_allow_popout_UI"),
+               uiOutput("url_allow_popout_UI"), ## url_allow_popout_UI MUST occur in first tabPanel
                uiOutput("selected_categories_UI"),
                leafletOutput("leaflet_map")
              )),

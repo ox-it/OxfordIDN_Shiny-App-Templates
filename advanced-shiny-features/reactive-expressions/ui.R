@@ -22,6 +22,22 @@ shinyUI(
       of all other content."),
       actionButton("reload", label = "Reload")
     ),
+    sliderInput("mean", "Mean of rnom(1000, mean, sd)", min = 0, 5),
+    textOutput("plot_label", "Label of plot"),
+    
+    fluidRow(
+      column(
+        plotOutput("histogram_renderPlot"),
+        width = 6
+      ),
+      column(
+        plotOutput("histogram_eventReactive"),
+        
+      )
+    )
+    
+    
+    
     div(id = "loading-content",
         class = "loading-content",
         h2(class = "animated infinite pulse", "Loading data...")),
