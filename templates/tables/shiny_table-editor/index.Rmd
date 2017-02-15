@@ -26,4 +26,4 @@ library(htmltools)
              alt="Fork me on GitHub"/>
 </a>
 
-This template was designed by [David Ruvolo](https://github.com/davidruvolo51).
+This template was designed by [David Ruvolo](https://github.com/davidruvolo51). See https://github.com/davidruvolo51/Rutils/tree/master/shinyapps/Data-Editor for dtails.
