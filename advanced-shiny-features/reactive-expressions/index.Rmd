@@ -1,5 +1,5 @@
 ---
-title: "Pulsating \"loading data\""
+title: "Reactive expressions"
 author: "`r library(htmltools)
 HTML('<a href=http://idn.it.ox.ac.uk>Oxford University Interactive Data Network</a>')`"
 output: 

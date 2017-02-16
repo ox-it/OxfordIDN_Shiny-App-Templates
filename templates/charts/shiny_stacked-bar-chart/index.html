@@ -54,11 +54,12 @@
           <ul class="dropdown-menu">
             <li><a href="/OxfordIDN_Shiny-App-Templates/basics">Shiny Tutorials</a></li>
             <li role="separator" class="divider"></li>
+            <!--<li><a href="/OxfordIDN_Shiny-App-Templates/advanced-shiny-features/linking-to-tabs">Linking to tabs</a></li>!-->
             <li><a href="/OxfordIDN_Shiny-App-Templates/advanced-shiny-features/reactive-expressions">Reactive Expressions</a></li>
             <li><a href="/OxfordIDN_Shiny-App-Templates/advanced-shiny-features/popout-button">Optional Popout Button</a></li>
-            <li><a href="/OxfordIDN_Shiny-App-Templates/advanced-shiny-features/progress-wheels">Waiting/Loading Effect</a></li>
-            <li><a href="/OxfordIDN_Shiny-App-Templates/advanced-shiny-features/state-tracking">State Tracking</a></li>
-            <li><a href="/OxfordIDN_Shiny-App-Templates/advanced-shiny-features/pcollapsable-section">Collapsable Sections</a></li>
+            <li><a href="/OxfordIDN_Shiny-App-Templates/advanced-shiny-features/loading-data">Pulsating &quot;loading data&quot;</a></li>
+            <!--<li><a href="/OxfordIDN_Shiny-App-Templates/advanced-shiny-features/state-tracking">State Tracking</a></li>!-->
+            <!--<li><a href="/OxfordIDN_Shiny-App-Templates/advanced-shiny-features/collapsable-section">Collapsable Sections</a></li>!-->
           </ul>
         </li>
         
@@ -95,6 +96,7 @@
             <li role="separator" class="divider"></li>
             <li><b> Interative Tables</b></li>
             <li><a href="/OxfordIDN_Shiny-App-Templates/templates/tables/shiny_filterable-tables">Filterable tables</a></li>
+            <li><a href="/OxfordIDN_Shiny-App-Templates/templates/tables/shiny_table-editor">Editable Table</a></li>
           </ul>
         </li>
         
@@ -180,7 +182,7 @@ h6 {
 </style>
 
 <link href="data:text/css;charset=utf-8,%2Emain%2Dcontainer%20%7B%0Apadding%2Dtop%3A%2050px%3B%0A%7D%0A%40media%20%28max%2Dwidth%3A%201000px%29%20%7B%0A%2Enavbar%2Dheader%20%7B%0Afloat%3A%20none%3B%0A%7D%0A%2Enavbar%2Dleft%2C%2Enavbar%2Dright%20%7B%0Afloat%3A%20none%20%21important%3B%0A%7D%0A%2Enavbar%2Dtoggle%20%7B%0Adisplay%3A%20block%3B%0A%7D%0A%2Enavbar%2Dcollapse%20%7B%0Aborder%2Dtop%3A%201px%20solid%20transparent%3B%0Abox%2Dshadow%3A%20inset%200%201px%200%20rgba%28255%2C255%2C255%2C0%2E1%29%3B%0A%7D%0A%2Enavbar%2Dfixed%2Dtop%20%7B%0Atop%3A%200%3B%0Aborder%2Dwidth%3A%200%200%201px%3B%0A%7D%0A%2Enavbar%2Dcollapse%2Ecollapse%20%7B%0Adisplay%3A%20none%21important%3B%0A%7D%0A%2Enavbar%2Dnav%20%7B%0Afloat%3A%20none%21important%3B%0Amargin%2Dtop%3A%207%2E5px%3B%0A%7D%0A%2Enavbar%2Dnav%3Eli%20%7B%0Afloat%3A%20none%3B%0A%7D%0A%2Enavbar%2Dnav%3Eli%3Ea%20%7B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%2010px%3B%0A%7D%0A%2Ecollapse%2Ein%7B%0Adisplay%3Ablock%20%21important%3B%0A%7D%0A%7D%0A%2Edropdown%2Dsubmenu%20%7B%0Aposition%3A%20relative%3B%0A%7D%0A%2Edropdown%2Dsubmenu%3E%2Edropdown%2Dmenu%20%7B%0Atop%3A%200%3B%0Aleft%3A%20100%25%3B%0Amargin%2Dtop%3A%20%2D6px%3B%0Amargin%2Dleft%3A%20%2D1px%3B%0A%2Dwebkit%2Dborder%2Dradius%3A%200%206px%206px%206px%3B%0A%2Dmoz%2Dborder%2Dradius%3A%200%206px%206px%3B%0Aborder%2Dradius%3A%200%206px%206px%206px%3B%0A%7D%0A%2Edropdown%2Dsubmenu%3Ahover%3E%2Edropdown%2Dmenu%20%7B%0Adisplay%3A%20block%3B%0A%7D%0A%2Edropdown%2Dsubmenu%3Ea%3Aafter%20%7B%0Adisplay%3A%20block%3B%0Acontent%3A%20%22%20%22%3B%0Afloat%3A%20right%3B%0Awidth%3A%200%3B%0Aheight%3A%200%3B%0Aborder%2Dcolor%3A%20transparent%3B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%2Dwidth%3A%205px%200%205px%205px%3B%0Aborder%2Dleft%2Dcolor%3A%20%23ccc%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dright%3A%20%2D10px%3B%0A%7D%0A%2Edropdown%2Dsubmenu%3Ahover%3Ea%3Aafter%20%7B%0Aborder%2Dleft%2Dcolor%3A%20%23fff%3B%0A%7D%0A%2Edropdown%2Dsubmenu%2Epull%2Dleft%20%7B%0Afloat%3A%20none%3B%0A%7D%0A%2Edropdown%2Dsubmenu%2Epull%2Dleft%3E%2Edropdown%2Dmenu%20%7B%0Aleft%3A%20%2D100%25%3B%0Amargin%2Dleft%3A%2010px%3B%0A%2Dwebkit%2Dborder%2Dradius%3A%206px%200%206px%206px%3B%0A%2Dmoz%2Dborder%2Dradius%3A%206px%200%206px%206px%3B%0Aborder%2Dradius%3A%206px%200%206px%206px%3B%0A%7D%0A" rel="stylesheet" type="text/css" />
-<link href="data:text/css;charset=utf-8," rel="stylesheet" type="text/css" />
+<link href="data:text/css;charset=utf-8,%20" rel="stylesheet" type="text/css" />
 
 </head>
 
@@ -339,19 +341,30 @@ library(DT)
 library(dplyr)
 data_stacked_bar_chart %&gt;%
   sample_n(10) %&gt;%
-  datatable()</code></pre>
-<div id="htmlwidget-4235eedd7784447f5259" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-4235eedd7784447f5259">{"x":{"filter":"none","data":[["18","25","19","30","16","40","13","11","17","15"],["Canada","Germany","Estonia","Ireland","China","Ireland","Saudi Arabia","United Kingdom","Slovakia","Germany"],["Other","Personal.Visit","Other","Personal.Visit","Other","Teleconference","Other","Other","Other","Other"],[10,19,30,20,39,36,11,22,22,11]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> \u003c/th>\n      <th>country\u003c/th>\n      <th>activity\u003c/th>\n      <th>hours\u003c/th>\n    \u003c/tr>\n  \u003c/thead>\n\u003c/table>","options":{"columnDefs":[{"className":"dt-right","targets":3},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false},"selection":{"mode":"multiple","selected":null,"target":"row"}},"evals":[],"jsHooks":[]}</script>
+  datatable(rownames = F)</code></pre>
+<div id="htmlwidget-1a6441e5e7ff64b8c8d5" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1a6441e5e7ff64b8c8d5">{"x":{"filter":"none","data":[["Slovakia","China","Egypt","France","Estonia","Germany","Ireland","Ireland","France","Germany"],["Business","Other","Other","Teleconference","Unclassified","Business","Business","Teleconference","Personal.Visit","Personal.Visit"],[9,39,19,29,48,9,9,36,21,19]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>country\u003c/th>\n      <th>activity\u003c/th>\n      <th>hours\u003c/th>\n    \u003c/tr>\n  \u003c/thead>\n\u003c/table>","options":{"columnDefs":[{"className":"dt-right","targets":2}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 <p>The stacked bar chart template is embedded into the page below, see <a href="https://github.com/martinjhnhadley/OxfordIDN_Shiny-App-Templates/tree/gh-pages/templates/charts/shiny_stacked-bar-chart" target="_blank">here</a> for the code.</p>
 <iframe src="http://trainingidn.shinyapps.io/htmlwidget_template_stacked_bar_chart?allowPopout=true" width="100%" height="580px">
 </iframe>
 <div id="what-does-this-template-do" class="section level1">
 <h1>What does this template do?</h1>
-<p>This template is useful for comparing categorised (and sub-categorised) datasets, see here for a detailed guide on building <a href="http://martinjhnhadley.github.io/OxfordIDN_htmlwidgets/charts/StackedBarCharts/">interactive stacked barcharts with htmlwidget libraries</a>.</p>
+<p>This template allows users to control the following:</p>
+<ul>
+<li><p>Which htmlwidget library is used to display the data</p></li>
+<li><p>Different libraries provide different features, move your cursor within the chart to explore what options are available to you.</p></li>
+<li><p>How to stack bars (group, stack or percent)</p></li>
+<li><p>Which column of the data file should be used to populate the categories (y-axis) and subcategories (individual bars) in the chart.</p></li>
+</ul>
 </div>
 <div id="how-do-i-use-the-template" class="section level1">
 <h1>How do I use the template?</h1>
-<p>Download and …</p>
+<p>This template contains a number of standard features from the IDN Templates, you will need to read the separate guides to understand these features:</p>
+<ul>
+<li>allowPopout</li>
+<li>navbarPage</li>
+<li>Loading CSS</li>
+</ul>
 </div>
 <div id="where-can-i-get-more-help" class="section level1">
 <h1>Where can I get more help?</h1>
