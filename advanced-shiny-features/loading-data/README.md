@@ -2,7 +2,7 @@
 
 This is a minimal template Shiny app to show how to include the pulsating "loading data" effect used in all other templates. The GIF below demonstrates how it looks:
 
-<img src="/pulsating-loading-data.gif" width="400">
+<img src="pulsating-loading-data.gif" width="400">
 
 # Using this template
 
