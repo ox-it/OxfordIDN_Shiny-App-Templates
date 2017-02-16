@@ -4,8 +4,6 @@ author: "`r library(htmltools)
 HTML('<a href=http://idn.it.ox.ac.uk>Oxford University Interactive Data Network</a>')`"
 output: 
   html_document:
-    toc: true
-    toc_float: true
     number_sections: false
     css: [../../gh-pages_global/gh-pages_navbar.css, ../../gh-pages_global/custom-width.css]
     includes:
@@ -21,19 +19,92 @@ library(htmltools)
 ```
 
 <a href="https://github.com/martinjhnhadley/OxfordIDN_Shiny-App-Templates/tree/gh-pages/advanced-shiny-features/reactive-expressions" target="blank">  
-<img style="position: absolute; top: 0; right: 0; border: 0;",
+<img style="position: fixed;top: 0;right: 0;border: 0;padding-top: 50px;",
              src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png",
              alt="Fork me on GitHub"/>
 </a>
 
 For many users of Shiny, it is simply a tool for building interactive web content with R. Where a user knows a little more about how Shiny works; it is a reactive programming model that allows interactions to be communicated back and forth between a browser (the client or the ui.R file) and a server running R (via the function defined within the server.R file).
 
-This template aims to provide a back
+This tutorial introduces you to the basics of "reactive expressions", and uses the following Shiny app embedded below as a tutorial. To access the code for the Shiny app click the "Fork me on Github" ribbon in the top-right.
 
+<iframe src="https://trainingidn.shinyapps.io/shiny-template_reactive-expressions/" width="100%" height="720px"></iframe>
 
+# What is being shown?
 
+The Shiny app generates random data and visualises it in a histogram using, essentially, the following code:
 
+```{r, echo=TRUE,eval=TRUE}
+user_selected_mean <- 3
+user_typed_title <- "Hello World"
+hist(rnorm(100, mean = 3, sd = 1),
+     main = user_typed_title)
+```
 
+In the ui.R there are two different plots shown::
 
+- histogram_renderPlot has all of it's logic contained within `renderPlot` (and the new data is generated whenever you type)
+- histogram_eventReactive has separated the control logic using `eventReactive` (typing does not generate new random data)
+
+```{r, eval=FALSE}
+column(
+  "Uncontrolled updating",
+  plotOutput("histogram_renderPlot"),
+  width = 6
+),
+column(
+  "Controlled updating",
+  plotOutput("histogram_eventReactive"),
+  width = 6
+)
+```
+
+# histogram_renderPlot
+
+The server.R file contains the following code for generating the "histogram_renderPlot" output:
+
+```{r, eval=FALSE}
+output$histogram_renderPlot <- renderPlot({
+      hist_data <- rnorm(100, mean = input$mean, sd = 4)
+      hist(hist_data,
+           main = input$plot_label)
+    })
+```
+
+**All** `render*` functions behave in the same way; they watch for any changes to `input$*` variables and *invalidate* themselves. Once invalidated, the entire expression re-evaluates. Meaning that any time `input$plot_label` is changed, new `hist_data` values will be computed.
+
+# histogram_eventReactive
+
+There are many options available for controlling the reactivity if a Shiny app ([RStudio provides a wonderful overview of reactivity](https://shiny.rstudio.com/articles/understanding-reactivity.html)). This template makes use of the simplest available option to us: `eventReactive` 
+
+```{r, eval=FALSE}
+hist_data_eventReactive <- eventReactive(c(input$mean),
+                                         {
+                                           rnorm(100, mean = input$mean, sd = 4)
+                                         })
+```
+
+The arguments of `eventReactive` are as follows:
+
+- 1st Argument: A vector of `input$*` variables that should be watched
+- 2nd Argument: An expression that is invalidated and re-evaluated everytime one of the `input$*` variables in the first argument is changed.
+
+`eventReactive` creates a "reactive expression object" that, when called, will return the output of its second argument. This can be seen in the template app as follows:
+
+```{r, eval = FALSE}
+output$histogram_eventReactive <- renderPlot({
+  hist_data <- hist_data_eventReactive()
+  hist(hist_data,
+       main = input$plot_label)
+})
+```
+
+The `renderPlot` expression retains its reactivity to `input$plot_label`, but now the `hist_data` will only update when the "reactive expression object" `hist_data_eventReactive()` changes.
+
+# Take Away Messages
+
+- `render*` functions are sensitive to every `input$*` change, unless you write additional code
+- `eventReactive` is a useful control structure where "this value should be recomputed because X changes"
+- You will forget that `hist_data_eventReactive()` needs the `()` to function. Sadly there is not a specific error for this, just try and be careful with your typing.
 
 
