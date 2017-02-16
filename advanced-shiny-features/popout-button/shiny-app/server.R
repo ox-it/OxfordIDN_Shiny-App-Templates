@@ -6,15 +6,15 @@
 ## Author: Martin John Hadley (orcid.org/0000-0002-3039-6849)
 ## ================================================================================
 
-## ==== Packages to load for data processing
-library(tidyverse) # tidyverse imports data processing/importing tools, see https://github.com/hadley/tidyverse
-
-## Load data from figshare
-locations <- read_csv("https://ndownloader.figshare.com/files/5449670")
-
-## Assign (meaningless) categories
-locations$type <- rep(c("A","B","C"), each = 5, len = 15)
-
-
-
-
+shinyServer(function(input, output, session) {
+  
+  ## this calls the contents of url_allowPopout.R as if it was copied and 
+  ## pasted directly into the shinyServer function. This allows the 
+  ## output$url_allow_popout_UI to be displayed in the client
+  source("url_allowPopout.R", local = TRUE)
+  
+  output$chart <- renderPlot(
+    hist(rnorm(100))
+  )
+  
+})
