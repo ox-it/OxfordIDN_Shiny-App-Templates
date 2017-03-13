@@ -4,8 +4,6 @@ author: "`r library(htmltools)
 HTML('<a href=http://idn.it.ox.ac.uk>Oxford University Interactive Data Network</a>')`"
 output: 
   html_document:
-    toc: true
-    toc_float: true
     number_sections: false
     css: [../../gh-pages_global/gh-pages_navbar.css, ../../gh-pages_global/custom-width.css]
     includes:
@@ -21,7 +19,7 @@ library(htmltools)
 ```
 
 <a href="https://github.com/martinjhnhadley/OxfordIDN_Shiny-App-Templates/tree/gh-pages/advanced-shiny-features/loading-data" target="blank">  
-<img style="position: absolute; top: 0; right: 0; border: 0;",
+  <img style="position: absolute; top: 0; right: 0; border: 0;padding-top: 50px;",
              src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png",
              alt="Fork me on GitHub"/>
 </a>
@@ -59,18 +57,21 @@ This template relies on three steps:
 In order to use `shinyjs` you **must** do the following:
 
 - Include `library(shinyjs)` in both the ui.R and server.R files
-- Include `useShinyjs()` within the your UI, it's recommended you include it near the top so you don't forget:
+- Include `useShinyjs()` within the your UI, it should appear in the very first `fluidPage` in your app:
 
 ```{r, eval=FALSE}
 ## ui.R
 shinyUI(
-  fluidPage(
-    useShinyjs(),
-    ...
-)
+  navbarPage(
+  "Pulsating loading data",
+  tabPanel(
+    "Visualisation",
+    fluidPage(
+      useShinyjs(),
+      includeCSS("www/animate.min.css"),
 ```
 
-There is slight finesse required if using `shinyjs` outside of what might be considered a "traditional" two-file Shiny app. Consult the documentation [https://github.com/daattali/shinyjs/blob/master/vignettes/shinyjs-usage.Rmd](here) if necessary.
+There is slight finesse required if using `shinyjs` outside of what might be considered a "traditional" two-file Shiny app. Consult the documentation [here](https://github.com/daattali/shinyjs/blob/master/vignettes/shinyjs-usage.Rmd) if necessary.
 
 ## show/hide("loading-content")
 
@@ -118,7 +119,7 @@ output$chart <- renderPlot({
 
 ## animate.min.css and loading-content.css {#css}
 
-CSS should be considered the "design language" of the web - it's used for laying out content in grids, styling text, images and much more. It is not necessary to understand CSS to use this template, but if you're interested there's a great [https://www.codecademy.com/learn/web](Code Academy course on CSS).
+CSS should be considered the "design language" of the web - it's used for laying out content in grids, styling text, images and much more. It is not necessary to understand CSS to use this template, but if you're interested there's a great [Code Academy course on CSS](https://www.codecademy.com/learn/web).
 
 This template uses the excellent CSS library [animate.css](https://daneden.github.io/animate.css/) to provide a pulsating effect for the text in the loading pane. There are many choices about [how to include CSS in Shiny apps](https://shiny.rstudio.com/articles/css.html), one of the key decisions comes down to the following:
 

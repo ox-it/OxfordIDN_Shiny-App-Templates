@@ -4,8 +4,6 @@ author: "`r library(htmltools)
 HTML('<a href=http://idn.it.ox.ac.uk>Oxford University Interactive Data Network</a>')`"
 output: 
   html_document:
-    toc: true
-    toc_float: true
     number_sections: false
     css: [../../../gh-pages_global/gh-pages_navbar.css, ../../../gh-pages_global/custom-width.css]
     includes:
@@ -21,12 +19,20 @@ library(htmltools)
 ```
 
 <a href="https://github.com/martinjhnhadley/OxfordIDN_Shiny-App-Templates" target="blank">  
-<img style="position: absolute; top: 0; right: 0; border: 0;",
+<img style="position: absolute; top: 0; right: 0; border: 0;padding-top: 50px;",
              src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png",
              alt="Fork me on GitHub"/>
 </a>
 
-Stacked Bar Charts are useful for visualising data with a "hierarchy of categories"; there are a number of observations split into categories and once more sub-divided into subcategories. A toy example dataset is provided in the `oidnChaRts` library:
+Stacked Bar Charts are useful for visualising data with two levels, what might be considered "categories" and "subcategories" of information. The embedded Shiny app below acts as both a template app and demonstrates a number of htmlwidget libraries that could be used for this visualisation.
+
+<iframe src="http://trainingidn.shinyapps.io/htmlwidget_template_stacked_bar_chart?allowPopout=true" width="100%" height="580px"></iframe>
+
+
+A toy example dataset is provided in the `oidnChaRts` library:
+
+
+
 
 ```{r}
 library(oidnChaRts)
@@ -39,7 +45,6 @@ data_stacked_bar_chart %>%
 
 The stacked bar chart template is embedded into the page below, see <a href="https://github.com/martinjhnhadley/OxfordIDN_Shiny-App-Templates/tree/gh-pages/templates/charts/shiny_stacked-bar-chart" target="_blank">here</a> for the code.
  
-<iframe src="http://trainingidn.shinyapps.io/htmlwidget_template_stacked_bar_chart?allowPopout=true" width="100%" height="580px"></iframe>
 
 # What does this template do?
 

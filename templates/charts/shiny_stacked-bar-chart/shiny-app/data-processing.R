@@ -12,6 +12,15 @@ library(readr)
 ## Load data from file
 business_trips <- read_csv("data/sample_stacked_bar_chart.csv")
 
+# wide_import <- read_csv("data/wide_data.csv")
+# colnames(wide_import) <- tolower(colnames(wide_import))
+# 
+# which(colnames(wide_import) %in% c("Country","Client"))
+# 
+# business_trips <- wide_import %>%
+#   gather(activity, hours, which(!colnames(wide_import) %in% c("country","client")))
+
+
 category_columns <-
   list(
     "Type of activity" = "activity",

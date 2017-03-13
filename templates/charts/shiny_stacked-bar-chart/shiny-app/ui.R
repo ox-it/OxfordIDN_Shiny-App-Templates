@@ -11,17 +11,19 @@
 library(shiny) # Some advanced functionality depends on the shiny package being loaded client-side, including plot.ly
 library(highcharter)
 library(plotly)
+library(shinyjs)
 
 ## ==== Global Variables (client-side)
 
 shinyUI(navbarPage(
-  ## ==== Include google analytics code
-  #  tags$head(includeScript("google-analytics.js")),
   "Stacked barcharts",
   tabPanel(
     "Visualisation",
     fluidPage(
-      ## url_allow_popout_UI MUST occur in first tabPanel
+      useShinyjs(),
+      includeCSS("www/animate.min.css"),
+      # provides pulsating effect
+      includeCSS("www/loading-content.css"),
       uiOutput("url_allow_popout_UI"),
       fluidRow(column(
         selectInput(
@@ -40,21 +42,21 @@ shinyUI(navbarPage(
         ),
         width = 7
       )),
-      fluidRow(
-        column(
-          uiOutput("category_column_UI"),
-          width = 5
-        ),
-        column(
-          uiOutput("subcategory_column_UI"),
-          width = 7
-        )
+      selectInput(
+        "category_column",
+        "Category column (i.e. y-axis):",
+        choices = c("country","activity"),
+        width = "100%"
       ),
-      # leafletOutput("leaflet_map")
+      div(
+        id = "loading-content",
+        class = "loading-content",
+        h2(class = "animated infinite pulse", "Loading data...")
+      ),
       uiOutput("oidnchart_ui")
     )
   ),
   tabPanel("About",
-           uiOutput("about_page_UI")),
+           includeMarkdown(knitr::knit("tab_about.Rmd"))),
   collapsible = T
 ))

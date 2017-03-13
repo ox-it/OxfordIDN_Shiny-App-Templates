@@ -1,6 +1,6 @@
 ## =============================== License ========================================
 ## ================================================================================
-## This work is distributed under a CC0 license.
+## This work is distributed under the CC0 1.0 Universal (CC0 1.0) license, included in the parent directory
 ## Copyright Owner: University of Oxford
 ## Date of Authorship: 2016
 ## Author: Martin John Hadley (orcid.org/0000-0002-3039-6849)
@@ -9,10 +9,11 @@
 library(shinyjs)
 
 shinyUI(navbarPage(
-  "Pulsating loading data",
+  "IDN Template App",
   tabPanel(
     "Visualisation",
     fluidPage(
+      uiOutput("url_allow_popout_UI"),
       useShinyjs(),
       includeCSS("www/animate.min.css"),
       # provides pulsating effect
@@ -44,3 +45,4 @@ shinyUI(navbarPage(
   ## see https://shiny.rstudio.com/articles/layout-guide.html for more info
   collapsible = TRUE
 ))
+

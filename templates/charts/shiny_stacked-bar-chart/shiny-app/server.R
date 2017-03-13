@@ -13,6 +13,7 @@ library(highcharter)
 library(plotly)
 library(oidnChaRts) # devtools::install_github("martinjhnhadley/oidnChaRts")
 library(dplyr)
+library(shinyjs)
 
 ## ==== Load data/functions globally
 source("data-processing.R", local = TRUE)
@@ -40,47 +41,51 @@ shinyServer(function(input, output, session) {
     )
     
   })
-  
-  output$subcategory_column_UI <- renderUI({
-    selectInput(
-      "subcategory_column",
-      "Subcategory column (i.e. what individual bars represent):",
-      choices = category_columns[!match(as.character(category_columns),
-                                        input$category_column,
-                                        nomatch = FALSE)],
-      width = "100%"
+
+  output$plotly_oidnchart <- renderPlotly({
+    
+    if(input$selected_library != "plotly"){
+      return()
+    }
+    
+    show("loading-content")
+    
+    plotly_chart <- stacked_bar_chart(
+      business_trips,
+      library = input$selected_library,
+      categories.column = as.formula(paste0("~",input$category_column)),
+      value.column = ~ hours,
+      subcategories.column = as.formula(paste0("~",setdiff(c("country","activity"), input$category_column))),
+      stacking.type = ifelse(input$stacking_type == "NA", NA, input$stacking_type)
     )
+    
+    hide("loading-content")
+    
+    plotly_chart
     
   })
   
-  oidnchart_call <- eventReactive(
-    c(input$stacking_type, input$selected_library, input$category_column, input$subcategory_column),
-    {
-      if(input$subcategory_column == input$category_column){
-        return() # for a moment, the two inputs are equal switching. This prevents errors.
-      }
-      stacked_bar_chart(
-        business_trips,
-        library = input$selected_library,
-        categories.column = as.formula(paste0("~",input$category_column)),
-        value.column = ~ hours,
-        subcategories.column = as.formula(paste0("~",input$subcategory_column)),
-        stacking.type = ifelse(input$stacking_type == "NA", NA, input$stacking_type)
-      )
-    }, ignoreNULL = F
-  )
-  
-  
-  output$plotly_oidnchart <- renderPlotly(if (input$selected_library == "plotly") {
-    oidnchart_call()
-  } else {
-    return()
-  })
-  
-  output$highcharter_oidnchart <- renderHighchart(if (input$selected_library == "highcharter") {
-    oidnchart_call()
-  } else {
-    return()
+  output$highcharter_oidnchart <- renderHighchart({
+
+    if(input$selected_library != "highcharter"){
+      return()
+    }
+    
+    show("loading-content")
+    
+    highcharter_chart <- stacked_bar_chart(
+      business_trips,
+      library = input$selected_library,
+      categories.column = as.formula(paste0("~",input$category_column)),
+      value.column = ~ hours,
+      subcategories.column = as.formula(paste0("~",setdiff(c("country","activity"), input$category_column))),
+      stacking.type = ifelse(input$stacking_type == "NA", NA, input$stacking_type)
+    )
+    
+    hide("loading-content")
+    
+    highcharter_chart
+    
   })
   
   output$oidnchart_ui <- renderUI({

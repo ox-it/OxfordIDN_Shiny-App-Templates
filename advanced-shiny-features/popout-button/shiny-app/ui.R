@@ -17,10 +17,7 @@ shinyUI(navbarPage(
              plotOutput("chart")
            )),
   tabPanel("About",
-           fluidPage(
-             ## generate random text for something to look at
-             HTML(paste(stri_rand_lipsum(5), collapse = "<br/>"))
-           )),
+           includeMarkdown(knitr::knit("tab_about.Rmd"))),
   ## collapses the menu bar into a "hamburger" when the window is narrower than 768px
   ## see https://shiny.rstudio.com/articles/layout-guide.html for more info
   collapsible = TRUE

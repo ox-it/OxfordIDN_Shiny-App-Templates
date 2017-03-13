@@ -4,8 +4,6 @@ author: "`r library(htmltools)
 HTML('<a href=http://idn.it.ox.ac.uk>Oxford University Interactive Data Network</a>')`"
 output: 
   html_document:
-    toc: true
-    toc_float: true
     number_sections: false
     css: ../../gh-pages_global/gh-pages_navbar.css
     includes:
@@ -21,7 +19,7 @@ library(htmltools)
 ```
 
 <a href="https://github.com/martinjhnhadley/OxfordIDN_Shiny-App-Templates/layouts/navbarPage" target="blank">  
-<img style="position: absolute; top: 0; right: 0; border: 0;",
+<img style="position: absolute; top: 0; right: 0; border: 0;padding-top: 50px;",
              src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png",
              alt="Fork me on GitHub"/>
 </a>
@@ -30,7 +28,7 @@ The navbarPage layout for Shiny apps is incredibly useful as it provides a horiz
 
 In this document the basic IDN navbarPage template is introduced, which looks like this:
 
-<iframe src=https://livedataoxford.shinyapps.io/shinytemplate_navbarpage-popout/?allowPopout=true width="100%" height="500px"></iframe>
+<iframe src=https://trainingidn.shinyapps.io/shiny-template_popout-button/?allowPopout=true width="100%" height="500px"></iframe>
 
 # Template features
 
@@ -42,7 +40,7 @@ Highlevel features are as follows:
 
 # Why use this template?
 
-The popout button is very useful for Shiny apps that are to be inserted into pages as iframes which might be too small to display the Shiny app to its fullest - opening the app in a new tab reduces the furniture of the containing page.
+The popout button is very useful for Shiny apps that are to be inserted into pages as iframes which might be too small to display the Shiny app to its fullest - opening the app in a new tab removes the furniture of the containing page.
 
 To enable the popout control, simply add the following to the Shiny app URL:
 
@@ -54,67 +52,16 @@ The template is split into the following directories/files:
 
     shinyApp |
     - ui.R # navbarPage() containing all UI elements
-    - server.R # "active" part of the code, i.e controls dependent on data-processing.R
-    - basicPopout.R # logic for displaying the "popout" control in the navbarPage
-    - beautification.R # colour schemes and other beautification
-    - data-processing.R # basic data processing, importing and wrangling
-    - About_Page.Rmd # content for the "About" tab
-    - Short_Viz_Description.Rmd # content displayed in the "Visualisation" tab
+    - server.R # "active" part of the code
+    - url_allowPopout.R # logic for displaying the "popout" control in the navbarPage
+    - tab_about.Rmd # Text displayed in the "About" tab, note cannot include server-dependent code.
     - www |
-    ------- images | # display from server.R etc using /images/it-services.png
-    ---------------- it-services.png
+    ------- animate.min.css # CSS that provides "pulsating" effect to loading text
+    ------- loading-content.css # CSS that styles "loading panes" to be transparent
     
-Most of the code within the Shiny app uses patterns that are detailed in the [[basic Shiny tutorial]], the only features deserving further attention are the inclusion of .Rmd files and the "popout" button.
+Note that there are dedicated tutorials for the main features of the application:
 
-## About_Page.Rmd
+- [Pulsating loading pane](https://martinjhnhadley.github.io/OxfordIDN_Shiny-App-Templates/advanced-shiny-features/popout-button/)
+- [Optional popout button](https://martinjhnhadley.github.io/OxfordIDN_Shiny-App-Templates/advanced-shiny-features/popout-button/)
 
-Within this file there is R code dependent on `data-processing.R`, simply a count of the number of rows in the input data. This kind of information is of course very useful to display in an "About" page, but if the dataset is live it would be inappropriate to explicitly type "there are a billion rows in this dataset".
-
-In the .Rmd file itself the code is deliminated by backticks (`r '\x60r nrow(locations)\x60'`) but this code can only be evaluated server-side; it is therefore not possible to use `includeMarkdown` within the ui.R file. To solve this the following procedure is followed:
-
-- Knit the .Rmd file into HTML server side using `includeHTML(knitr::knit("About_Page.Rmd"))`
-- Assign this HTML to `output$about_page_UI` using `renderUI` in the server.R file
-- Display the content in ui.R with `uiOutput("about_page_UI"))`
-
-Should you not need to include R code dependent on server-side actions/content then this multi-step process is not necessary, the template uses this setup to provide flexibility to you.
-
-## Popout button
-
-The `url_allowPopout.R` contains all of the mechanism for checking the URL for `?allowPopout=true` and the button is displayed using `uiOutput("url_allow_popout_UI")` within the ui.R file.
-
-Basic shiny apps use the following shinyFunction definition:
-
-```{r, echo=TRUE, eval=FALSE}
-shinyServer(function(input, output){
-  ...
-})
-```
-
-An optional third argument, `session`, can be provided which allows inspection of your visitors client - see [shiny.rstudio.com](http://shiny.rstudio.com/articles/client-data.html) for a thorough discussion of what you can do with this. For our purposes we are interested in the contents of `session$clientData$url_search`, i.e. everything after the ? in the url.
-
-The worker of this functionality is `url_allowPopout_check` which uses `eventReactive` to update itself should the contents of `session$clientData$url_search` be modified. Should allowPopout=TRUE be included in the URL search parameters then `url_allowPopout_check` is set as TRUE, note that if no parameter is set the the popout button will not be shown.
-
-```{r, echo=TRUE, eval=FALSE}
-url_allowPopout_check <- eventReactive(session$clientData$url_search,
-                {
-                  query <- parseQueryString(session$clientData$url_search)
-                  if (!is.null(query[['allowPopout']])) {
-                    if (toupper(query[['allowPopout']]) == "TRUE") {
-                      TRUE
-                    } else
-                      FALSE
-                  } else
-                    FALSE
-                })
-```
-
-[Glyphicons](http://getbootstrap.com/components/) can be freely used in Bootstrap style content (Shiny uses Bootstrap by default) and offer attractive icons for such things as popout buttons, the template makes use of "glyphicon glyphicon-fullscreen" in `url_allowPopout_icon` and displays the content in the client via `uiOutput("url_allow_popout_UI")`. Note that this MUST be called within the first displayed tab of the navbarPage in order for the popout icon to be shown on app load.
-
-
-
-
-
-
-
-
-
+This app does *not* utilise reactive expressions to control the update order of Shiny content. If your Shiny app will include these features, you may find this tutorial useful - https://martinjhnhadley.github.io/OxfordIDN_Shiny-App-Templates/advanced-shiny-features/reactive-expressions/

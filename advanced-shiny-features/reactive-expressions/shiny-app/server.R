@@ -31,7 +31,7 @@ shinyServer(
       ## hist_data_eventReactive is a reactive object and needs () to be called
       ## but this looks ugly, so it's nice to create a new variable that only 
       ## updates when the eventReactive expression is invalidated
-      hist_data <- hist_data_eventReactive
+      hist_data <- hist_data_eventReactive()
       hist(hist_data,
            main = input$plot_label)
     })
