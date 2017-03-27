@@ -26,7 +26,7 @@ library(htmltools)
 
 Stacked Bar Charts are useful for visualising data with two levels, what might be considered "categories" and "subcategories" of information. The embedded Shiny app below acts as both a template app and demonstrates a number of htmlwidget libraries that could be used for this visualisation.
 
-<iframe src="http://trainingidn.shinyapps.io/htmlwidget_template_stacked_bar_chart?allowPopout=true" width="100%" height="580px"></iframe>
+<iframe src="https://trainingidn.shinyapps.io/htmlwidget_template_stacked_bar_chart?allowPopout=true" width="100%" height="580px"></iframe>
 
 
 A toy example dataset is provided in the `oidnChaRts` library:
