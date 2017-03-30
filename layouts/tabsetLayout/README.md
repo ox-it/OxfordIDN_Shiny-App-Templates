@@ -1,6 +1,6 @@
 # Large Shiny Apps with tabsetPanel Layout
 
-![Screenshot of app](https://raw.githubusercontent.com/martinjhnhadley/Rmd-and-Shiny-Templates/master/Shiny-Templates/Large-Apps/tabsetLayout/screenshot.png "Optional Title")
+![Screenshot of app](https://raw.githubusercontent.com/ox-it/Rmd-and-Shiny-Templates/master/Shiny-Templates/Large-Apps/tabsetLayout/screenshot.png "Optional Title")
 
 This template is useful for the development of large Shiny apps utilising the `tabsetPanel` layout, the features are as follows:
 

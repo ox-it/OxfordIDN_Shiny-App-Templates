@@ -6,9 +6,9 @@ This is a minimal template Shiny app to show how to control how and when output 
 
 # Using this template
 
-This template is thoroughly [documented here](https://martinjhnhadley.github.io/OxfordIDN_Shiny-App-Templates/advanced-shiny-features/reactive-expressions/).
+This template is thoroughly [documented here](https://ox-it.github.io/OxfordIDN_Shiny-App-Templates/advanced-shiny-features/reactive-expressions/).
 
-To obtain a copy of the code, click this link to [download a zip of the necessary files](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/martinjhnhadley/OxfordIDN_Shiny-App-Templates/tree/gh-pages/advanced-shiny-features/reactive-expressions/shiny-app).
+To obtain a copy of the code, click this link to [download a zip of the necessary files](https://minhaskamal.github.io/DownGit/#/home?url=https://github.com/ox-it/OxfordIDN_Shiny-App-Templates/tree/gh-pages/advanced-shiny-features/reactive-expressions/shiny-app).
 
 # License
 

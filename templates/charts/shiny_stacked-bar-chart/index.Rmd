@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 library(htmltools)
 ```
 
-<a href="https://github.com/martinjhnhadley/OxfordIDN_Shiny-App-Templates" target="blank">  
+<a href="https://github.com/ox-it/OxfordIDN_Shiny-App-Templates" target="blank">  
 <img style="position: absolute; top: 0; right: 0; border: 0;padding-top: 50px;",
              src="https://s3.amazonaws.com/github/ribbons/forkme_right_orange_ff7600.png",
              alt="Fork me on GitHub"/>
@@ -43,7 +43,7 @@ data_stacked_bar_chart %>%
   datatable(rownames = F)
 ```
 
-The stacked bar chart template is embedded into the page below, see <a href="https://github.com/martinjhnhadley/OxfordIDN_Shiny-App-Templates/tree/gh-pages/templates/charts/shiny_stacked-bar-chart" target="_blank">here</a> for the code.
+The stacked bar chart template is embedded into the page below, see <a href="https://github.com/ox-it/OxfordIDN_Shiny-App-Templates/tree/gh-pages/templates/charts/shiny_stacked-bar-chart" target="_blank">here</a> for the code.
  
 
 # What does this template do?

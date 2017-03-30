@@ -20,7 +20,7 @@ shinyUI(navbarPage(
                  "Clearly, this is undesireable behaviour. In the server.R file the control logic using eventReactive should be obvious.",
                br(),
                  a(
-                   href = "https://martinjhnhadley.github.io/OxfordIDN_Shiny-App-Templates/advanced-shiny-features/reactive-expressions/",
+                   href = "https://ox-it.github.io/OxfordIDN_Shiny-App-Templates/advanced-shiny-features/reactive-expressions/",
                    "See here for a tutorial on this subject.",
                    target = "_blank"
                  ),
