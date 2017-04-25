@@ -9,7 +9,6 @@
 
 **Data Deposit:** Include the DOI for the data feeding this Shiny app
 
-**Code Deposit:** Include the DOI for the code behind this Shiny app. Note that this particularly Shiny app is documented <a href="https://ox-it.github.io/OxfordIDN_Shiny-App-Templates/advanced-shiny-features/popout-button/" target="_blank">here</a>.
 
 **Visualisation Developer:** List the visualsiation developers (if not included in the authors list) with <a href="http://www.orcid.org" target="_blank">ORCID.org</a>, where available
 
