@@ -28,7 +28,7 @@ The navbarPage layout for Shiny apps is incredibly useful as it provides a horiz
 
 In this document the basic IDN navbarPage template is introduced, which looks like this:
 
-<iframe src=https://trainingidn.shinyapps.io/shiny-template_popout-button/?allowPopout=true width="100%" height="500px"></iframe>
+<iframe src=https://trainingidn.shinyapps.io/shiny-template_layout-navbarpage/?allowPopout=true width="100%" height="500px"></iframe>
 
 # Template features
 
