@@ -1,3 +1,6 @@
+<base target="_blank">
+<!-- Empty link requrired to get target=_blank to work-->
+<a href=""></a>
 **Paper Title:** Most interactive visualisations on the IDN are attached to publications, include the paper title hear if appropriate.
 
 **Authors:** List authors names and links to <a href="http://www.orcid.org" target="_blank">ORCID.org</a>, where available
